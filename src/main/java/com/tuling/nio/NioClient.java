@@ -53,9 +53,6 @@ public class NioClient {
     public void connect() throws IOException {
         // 轮询访问selector
         while (true) {
-            // 选择一组可以进行I/O操作的事件，放在selector中,客户端的该方法不会阻塞，
-            //这里和服务端的方法不一样，查看api注释可以知道，当至少一个通道被选中时，
-            //selector的wakeup方法被调用，方法返回，而对于客户端来说，通道一直是被选中的
             selector.select();
             // 获得selector中选中的项的迭代器
             Iterator<SelectionKey> it = this.selector.selectedKeys().iterator();
